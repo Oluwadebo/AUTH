@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f0f0;
+  transition: 0.5s;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
+.stye {
+  text-decoration: none;
+}
+.colo {
+  color: red;
+}
+.clo {
+  color: darkblue;
+}
+.gose {
+  float: right;
+  animation: mover 2s infinite alternate;
+}
+@keyframes mover {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(-40px);
+  }
+}
+.sig {
+  color: #1b4781;
+  opacity: 0.8;
+  float: right;
+  text-decoration: none;
+}
