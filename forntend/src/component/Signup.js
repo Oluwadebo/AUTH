@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -27,11 +28,11 @@ const Signup = () => {
       email: "",
       password: "",
       gender: "",
-      account: "0",
-      score: "0",
     },
     onSubmit: (values) => {
-      
+      axios.post("http://localhost:5007/signup", values).then((data) => {
+        navigate("/")
+      }).catch()
     },
     validationSchema: yup.object({
       firstname: yup
@@ -187,7 +188,7 @@ const Signup = () => {
                   name="password"
                   onBlur={formik.handleBlur}
                 />
-                
+
                 <div
                   id="toggle"
                   ref={toggle}

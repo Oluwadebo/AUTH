@@ -1,7 +1,31 @@
 const mongoose = require('mongoose');
-const UserModel = require('../model/model');
+const { UserModel, SignupModel } = require('../model/model');
 const cloudinary = require('cloudinary');
 const bcrypt = require('bcrypt');
+
+const regist = (req, res) => {
+    const information = req.body;
+    console.log(information);
+    SignupModel.create(information, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({ message: "saved", status: true })
+        }
+    })
+}
+
+const login = (req, res) => {
+    const { email, password } = req.body;
+    SignupModel.findOne({ email }, async (err, message) => {
+        if (err) {
+            res.send(err)
+        } else {
+            const validPassword = await bcrypt.compare(password, message.password);
+            res.send(validPassword)
+        }
+    })
+}
 
 const display = (req, res) => {
     UserModel.find((err, result) => {
@@ -33,7 +57,6 @@ const file = (req, res) => {
             res.send({ message: "file fail to upload" })
         } else {
             const myimage = result.url;
-            // let Newmodel = new UserModel({ ...req.body, file: myimage })
             UserModel.create({ ...req.body, file: myimage }, (err) => {
                 if (err) {
                     console.log(err);
@@ -45,16 +68,4 @@ const file = (req, res) => {
     });
 }
 
-const login = (req, res) => {
-    const { id, password } = req.body;
-    UserModel.findOne({ id }, async (err, message) => {
-        if (err) {
-            res.send(err)
-        } else {
-            const validPassword = await bcrypt.compare(password,message.password);
-            res.send(validPassword)
-        }
-    })
-}
-
-module.exports = { display, del, file, login };
+module.exports = { display, del, file, login, regist };
