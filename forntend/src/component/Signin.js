@@ -27,9 +27,9 @@ const Signup = () => {
       password: "",
     },
     onSubmit: (values) => {
-      axios.post("http://localhost:5007/signin", values).then((data) => {
+      axios.post("http://localhost:5007/signin", values).then(
         navigate("/Displaybackend")
-      })
+      ).catch()
     },
     validationSchema: yup.object({
       email: yup

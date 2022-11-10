@@ -30,9 +30,11 @@ const Signup = () => {
       gender: "",
     },
     onSubmit: (values) => {
-      axios.post("http://localhost:5007/signup", values).then((data) => {
-        navigate("/")
-      }).catch()
+      axios.post("http://localhost:5007/signup", values).then(
+        // navigate("/")
+      ).catch((error) => {
+          console.log(error);
+      })
     },
     validationSchema: yup.object({
       firstname: yup

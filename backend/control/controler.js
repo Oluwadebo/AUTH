@@ -5,10 +5,10 @@ const bcrypt = require('bcrypt');
 
 const regist = (req, res) => {
     const information = req.body;
-    console.log(information);
     SignupModel.create(information, (err) => {
         if (err) {
             console.log(err);
+            res.send({ err })
         } else {
             res.send({ message: "saved", status: true })
         }
@@ -17,9 +17,12 @@ const regist = (req, res) => {
 
 const login = (req, res) => {
     const { email, password } = req.body;
+    console.log(email);
+    console.log(password);
     SignupModel.findOne({ email }, async (err, message) => {
         if (err) {
             res.send(err)
+            console.log(err);
         } else {
             const validPassword = await bcrypt.compare(password, message.password);
             res.send(validPassword)
