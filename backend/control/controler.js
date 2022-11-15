@@ -9,8 +9,7 @@ const regist = (req, res) => {
     const information = req.body;
     SignupModel.create(information, (err) => {
         if (err) {
-            console.log(err);
-            res.send(err)
+            res.send({ message: "Email already used", status: false })
         } else {
             res.send({ message: "saved", status: true })
         }
@@ -25,12 +24,12 @@ const login = (req, res) => {
             console.log(err);
         } else {
             if (!message) {
-                res.send("Email not found")
+                res.send({ status: false, message: "Email not found" })
             }
             else {
                 const validPassword = await bcrypt.compare(password, message.password);
                 if (validPassword) {
-                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: 60 })
                     res.send({ token, message: "Token generated", status: true });
                 } else {
                     res.send({ status: false, message: "Invaild password" })
@@ -49,10 +48,10 @@ const display = (req, res) => {
             let id = decoded._id;
             SignupModel.find({ _id: id }, (err, result) => {
                 if (err) {
-                    console.log(err);
+                    res.send(err);
                 } else {
                     if (result.length > 0) {
-                        res.send({ result })
+                        res.send({ result, status: true, })
                     }
                     else {
                         console.log(result);
@@ -64,6 +63,7 @@ const display = (req, res) => {
     })
 
 }
+
 const getTodo = (req, res) => {
     let userId = req.body.userId;
     UserModel.find(userId, (err, result) => {

@@ -1,7 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem('token')
+        navigate("/")
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-light">
@@ -32,11 +37,11 @@ const Navbar = () => {
                                     to="/Todo"
                                     className='stye'
                                 >
-                                    <span className="nav-link">New-user</span>
+                                    <span className="nav-link">Upload</span>
                                 </Link>
                             </li>
                         </ul>
-                        <span className="navbar-text"> The lord is good. </span>
+                        <p className="navbar-text" onClick={logout}>Log-out</p>
                     </div>
                 </div>
             </nav>

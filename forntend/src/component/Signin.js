@@ -23,11 +23,15 @@ const Signup = () => {
     onSubmit: (values) => {
       axios.post(`${baseUrl}signin`, values).then((credentials) => {
         if (credentials) {
-          localStorage.token = credentials.data.token
-          navigate("/Displaybackend")
+          let Err = credentials.data.message;
+          if (Err == "Email not found") {
+            setError("Email not found");
+          } else {
+            localStorage.token = credentials.data.token
+            navigate("/Displaybackend")
+          }
+
         }
-      }).catch((error) => {
-        setError(error);
       })
     },
     validationSchema: yup.object({

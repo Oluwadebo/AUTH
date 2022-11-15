@@ -24,10 +24,13 @@ const Signup = () => {
     onSubmit: (values) => {
       axios.post(`${baseUrl}signup`, values).then((credentials) => {
         if (credentials) {
-          navigate("/")
+          let Err = credentials.data.message;
+          if (Err == "Email already used") {
+            setError("Email already used");
+          } else {
+            navigate("/")
+          }
         }
-      }).catch((error) => {
-        console.log(error);
       })
     },
     validationSchema: yup.object({

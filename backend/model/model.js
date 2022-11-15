@@ -29,7 +29,7 @@ SignupSchema.pre("save", async function (next) {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(password, salt);
     this.password = hashed;
-    this.email = hashed;
+    this.email = email.toLowerCase();
     next();
 })
 
