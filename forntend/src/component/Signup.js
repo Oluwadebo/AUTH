@@ -8,16 +8,7 @@ import axios from 'axios';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [allUser, setallUser] = useState([]);
   const [Error, setError] = useState("");
-  useEffect(() => {
-    if (localStorage.wwtbam) {
-      let detail = JSON.parse(localStorage.wwtbam);
-      setallUser(detail);
-    } else {
-      setallUser([]);
-    }
-  }, []);
   let lower = new RegExp(`(?=.*[a-z])`);
   let upper = new RegExp(`(?=.*[A-Z])`);
   let number = new RegExp(`(?=.*[0-9])`);
@@ -30,10 +21,12 @@ const Signup = () => {
       gender: "",
     },
     onSubmit: (values) => {
-      axios.post("http://localhost:5007/signup", values).then(
-        // navigate("/")
-      ).catch((error) => {
-          console.log(error);
+      axios.post("http://localhost:5007/signup", values).then((credentials) => {
+        if (credentials) {
+          navigate("/")
+        }
+      }).catch((error) => {
+        console.log(error);
       })
     },
     validationSchema: yup.object({

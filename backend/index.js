@@ -7,7 +7,8 @@ const multer = require("multer");
 const path = require('path');
 const cloudinary = require('cloudinary')
 const app = express();
-const { display, del, file, regist, login } = require("./control/controler");
+const { display, del, file, regist, login, getTodo } = require("./control/controler");
+const { checker } = require("./middleware/middleware");
 const upload = multer({ dest: './images' })
 dotenv.config();
 app.use(bodyParser.json({ limit: "50mb" }))
@@ -29,7 +30,8 @@ cloudinary.config({
 
 app.post("/signup", regist)
 app.post("/signin", login)
-app.get("/display", display)
+app.get("/dashboard", display)
+app.get("/gettodo", getTodo)
 app.post("/files", file)
 app.post("/del", del)
 

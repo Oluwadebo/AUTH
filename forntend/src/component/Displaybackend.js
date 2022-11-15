@@ -7,14 +7,31 @@ import Navbar from "./Navbar";
 
 const Displaybackend = () => {
     const [todos, settodos] = useState([])
+    const [user, setuser] = useState([])
+    const [userId, setuserId] = useState('')
+    const token = localStorage.token
     useEffect(() => {
-        axios.get("http://localhost:5006/display").then((data) => {
-            settodos(data.data.result);
-        })
+        axios.get("http://localhost:5007/dashboard",
+            {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-type": "application/json",
+                    "Accept": "application/json"
+                }
+            }).then((data) => {
+                setuser(data.data.result[0]);
+                localStorage.userId = data.data.result[0]._id
+                setuserId(data.data.result[0]._id)
+            })
+        axios.get("http://localhost:4000/gettodo").then(
+            (data) => {
+                settodos(data.data.result[0]);
+            }
+        ).catch()
     }, [])
     const delet = (val) => {
         console.log(val);
-        axios.post("http://localhost:5006/del", { id: val }).then((data) => { })
+        axios.post("http://localhost:4000/del", { id: val }).then((data) => { })
         window.location.reload()
     };
     const edit = () => {
@@ -23,13 +40,13 @@ const Displaybackend = () => {
     console.log(todos);
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <center>
                 <h2 className="my-3">STAFF PROFILE</h2>
             </center>
             <div className="container">
                 <div class="row">
-                    {todos.map((item, index) => (
+                    {/* {todos.map((item, index) => (
                         <div
                             class="col-12 col-md-4 product-top my-2 mx-0 mx-md-2 mt-md-0 card shadow"
                         >
@@ -43,8 +60,7 @@ const Displaybackend = () => {
                                 </div>
                             </div>
                         </div>
-
-                    ))}
+                    ))} */}
                 </div>
             </div>
             {/* <div className="container">
