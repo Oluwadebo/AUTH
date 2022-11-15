@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema(
         lastname: String,
         school: String,
         file: String,
+        userId: String,
     }
 )
 
@@ -24,10 +25,11 @@ const SignupSchema = new mongoose.Schema(
 )
 
 SignupSchema.pre("save", async function (next) {
-    let { password } = this;
+    let { password, email } = this;
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(password, salt);
     this.password = hashed;
+    this.email = hashed;
     next();
 })
 

@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { baseUrl } from "./endpoint";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Signup = () => {
       gender: "",
     },
     onSubmit: (values) => {
-      axios.post("http://localhost:5007/signup", values).then((credentials) => {
+      axios.post(`${baseUrl}signup`, values).then((credentials) => {
         if (credentials) {
           navigate("/")
         }

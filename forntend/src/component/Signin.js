@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { baseUrl } from "./endpoint";
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -19,9 +21,8 @@ const Signup = () => {
       password: "",
     },
     onSubmit: (values) => {
-      axios.post("http://localhost:5007/signin", values).then((credentials) => {
+      axios.post(`${baseUrl}signin`, values).then((credentials) => {
         if (credentials) {
-          // console.log(credentials);
           localStorage.token = credentials.data.token
           navigate("/Displaybackend")
         }
