@@ -29,7 +29,7 @@ const login = (req, res) => {
             else {
                 const validPassword = await bcrypt.compare(password, message.password);
                 if (validPassword) {
-                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
+                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: 60 })
                     res.send({ token, message: "Token generated", status: true });
                 } else {
                     res.send({ status: false, message: "Invaild password" })
@@ -51,7 +51,7 @@ const display = (req, res) => {
                     res.send(err);
                 } else {
                     if (result.length > 0) {
-                        res.send({ result, status: true, })
+                        res.send({ result, status: true, message: "Valid Token" })
                     }
                     else {
                         console.log(result);
@@ -66,6 +66,7 @@ const display = (req, res) => {
 
 const getTodo = (req, res) => {
     let userId = req.body.userId;
+    console.log(userId)
     UserModel.find(userId, (err, result) => {
         if (err) {
             console.log(err);

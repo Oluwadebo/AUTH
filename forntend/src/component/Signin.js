@@ -30,7 +30,6 @@ const Signup = () => {
             localStorage.token = credentials.data.token
             navigate("/Dashboard")
           }
-
         }
       })
     },

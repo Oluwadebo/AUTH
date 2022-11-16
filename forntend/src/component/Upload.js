@@ -31,7 +31,7 @@ const Upload = () => {
     const userdata = { file, firstname, lastname, school, userId }
     axios.post(`${baseUrl}files`, userdata).then((credentials) => {
       if (credentials) {
-        navigate("/Displaybackend")
+        navigate("/Dashboard")
       }
     }).catch((error) => {
       console.log(error);

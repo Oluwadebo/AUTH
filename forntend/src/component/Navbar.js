@@ -6,7 +6,6 @@ import { baseUrl } from "./endpoint";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const [todos, settodos] = useState([])
     const [user, setuser] = useState([])
     const [userId, setuserId] = useState('')
     const token = localStorage.token;
@@ -20,9 +19,18 @@ const Navbar = () => {
                         "Accept": "application/json"
                     }
                 }).then((data) => {
-                    setuser(data.data.result[0]);
-                    localStorage.userId = data.data.result[0]._id
-                    setuserId(data.data.result[0]._id)
+                    if (data) {
+                        let Err = data.data.message;
+                        if (Err == "Valid Token") {
+                            setuser(data.data.result[0]);
+                            localStorage.userId = data.data.result[0]._id
+                            setuserId(data.data.result[0]._id)
+                        } else {
+                            localStorage.removeItem('token')
+                            localStorage.removeItem('userId')
+                            navigate("/")
+                        }
+                    }
                 })
         } else {
             navigate("/")
@@ -60,7 +68,7 @@ const Navbar = () => {
                                 className='text-black stye'
                             >
                                 <span>
-                                    <i className="fa fs-5 fa-dashboard mx-4"> Home </i>
+                                    <i className="fa fs-5 fa-dashboard mx-md-4 mx-3"> Home </i>
                                 </span>
                             </Link>
                             <Link
@@ -68,11 +76,11 @@ const Navbar = () => {
                                 className='text-black stye'
                             >
                                 <span>
-                                    <i className="fa fs-5 fa-address-card mx-4"> Upload </i>
+                                    <i className="fa fs-5 fa-address-card mx-md-4 mx-3"> Upload </i>
                                 </span>
                             </Link>
                             <span>
-                                <i className="fa fs-5 fa-sign-out mx-4" onClick={logout}>Log-out</i>
+                                <i className="fa fs-5 fa-sign-out mx-md-4 mx-3 stye" onClick={logout}>Log-out</i>
                             </span>
                         </div>
                     </div>

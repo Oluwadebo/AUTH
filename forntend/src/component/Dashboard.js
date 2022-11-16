@@ -10,8 +10,6 @@ import { baseUrl } from "./endpoint";
 const Dashboard = () => {
     const navigate = useNavigate();
     const [todos, settodos] = useState([])
-    const [user, setuser] = useState([])
-    const [userId, setuserId] = useState('')
     const token = localStorage.token;
     useEffect(() => {
         if (token) {
@@ -31,7 +29,6 @@ const Dashboard = () => {
     const edit = (val) => {
         console.log(val);
     }
-    console.log(user);
     return (
         <>
             <Navbar />
