@@ -2,36 +2,24 @@ import React from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import Navbar from "./Navbar";
 import { baseUrl } from "./endpoint";
 
-const Displaybackend = () => {
+const Dashboard = () => {
     const navigate = useNavigate();
     const [todos, settodos] = useState([])
     const [user, setuser] = useState([])
     const [userId, setuserId] = useState('')
-    const token = localStorage.token
+    const token = localStorage.token;
     useEffect(() => {
         if (token) {
-            axios.get(`${baseUrl}dashboard`,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-type": "application/json",
-                        "Accept": "application/json"
-                    }
-                }).then((data) => {
-                    setuser(data.data.result[0]);
-                    localStorage.userId = data.data.result[0]._id
-                    setuserId(data.data.result[0]._id)
-                })
             axios.get(`${baseUrl}gettodo`).then(
                 (data) => {
                     settodos(data.data.result);
                 }
-            ).catch()
+            )
         } else {
             navigate("/")
         }
@@ -43,12 +31,10 @@ const Displaybackend = () => {
     const edit = (val) => {
         console.log(val);
     }
+    console.log(user);
     return (
         <>
             <Navbar />
-            <center>
-                <h2 className="my-3">STAFF PROFILE</h2>
-            </center>
             <div className="container">
                 <div class="row">
                     {todos.map((item, index) => (
@@ -81,4 +67,4 @@ const Displaybackend = () => {
     )
 }
 
-export default Displaybackend
+export default Dashboard

@@ -29,7 +29,7 @@ const login = (req, res) => {
             else {
                 const validPassword = await bcrypt.compare(password, message.password);
                 if (validPassword) {
-                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: 60 })
+                    const token = jwt.sign({ _id: message._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
                     res.send({ token, message: "Token generated", status: true });
                 } else {
                     res.send({ status: false, message: "Invaild password" })

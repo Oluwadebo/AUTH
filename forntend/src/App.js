@@ -1,10 +1,10 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NotFound from "./component/NotFound";
-import Todo from "./component/Todo";
-import Displaybackend from "./component/Displaybackend";
+import Upload from "./component/Upload";
 import Signup from "./component/Signup";
 import Signin from "./component/Signin";
+import Dashboard from "./component/Dashboard";
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Displaybackend" element={<Displaybackend />} />
-        <Route path="/Todo" element={<Todo />} />
+        <Route path="/Dashboard" element={<Dashboard/>} />
+        <Route path="/Upload" element={<Upload />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

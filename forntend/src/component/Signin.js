@@ -28,7 +28,7 @@ const Signup = () => {
             setError("Email not found");
           } else {
             localStorage.token = credentials.data.token
-            navigate("/Displaybackend")
+            navigate("/Dashboard")
           }
 
         }

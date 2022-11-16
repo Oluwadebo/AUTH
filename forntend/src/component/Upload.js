@@ -5,7 +5,7 @@ import axios from 'axios';
 import Navbar from "./Navbar";
 import { baseUrl } from "./endpoint";
 
-const Todo = () => {
+const Upload = () => {
   const navigate = useNavigate();
   const [file, setfile] = useState("");
   const [firstname, setfirstname] = useState("");
@@ -14,6 +14,11 @@ const Todo = () => {
   const [image, setimage] = useState("");
   const token = localStorage.token
   const userId = localStorage.userId
+  useEffect(() => {
+    if (token) { } else {
+      navigate("/")
+    }
+  }, [])
   const getfile = (e) => {
     let myfile = e.target.files[0];
     let reader = new FileReader();
@@ -58,4 +63,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default Upload;
