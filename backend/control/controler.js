@@ -66,8 +66,7 @@ const display = (req, res) => {
 
 const getTodo = (req, res) => {
     let userId = req.body.userId;
-    console.log(userId)
-    UserModel.find(userId, (err, result) => {
+    UserModel.find({ userId }, (err, result) => {
         if (err) {
             console.log(err);
         } else {

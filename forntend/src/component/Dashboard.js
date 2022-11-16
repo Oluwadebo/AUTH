@@ -11,9 +11,10 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [todos, settodos] = useState([])
     const token = localStorage.token;
+    const userId = localStorage.userId;
     useEffect(() => {
         if (token) {
-            axios.get(`${baseUrl}gettodo`).then(
+            axios.post(`${baseUrl}gettodo`, {userId:userId}).then(
                 (data) => {
                     settodos(data.data.result);
                 }
