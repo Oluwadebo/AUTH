@@ -62,7 +62,7 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarText">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-                        <div className="col-12 col-md-6 text-end">
+                        <div className="col-12 col-md-8 text-end">
                             <Link
                                 to="/Dashboard"
                                 className='text-black stye'
@@ -77,6 +77,14 @@ const Navbar = () => {
                             >
                                 <span>
                                     <i className="fa fs-5 fa-address-card mx-md-4 mx-3"> Upload </i>
+                                </span>
+                            </Link>
+                            <Link
+                                to="/Socket"
+                                className='text-black stye'
+                            >
+                                <span>
+                                    <i className="fa fs-5 fa-envelope mx-md-4 mx-3"> Socket </i>
                                 </span>
                             </Link>
                             <span>

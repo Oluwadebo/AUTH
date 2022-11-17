@@ -12,6 +12,12 @@ body {
 code {
   font-family: "Courier New", monospace;
 }
+.asd {
+  background: rgba(59, 37, 37, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  border: none;
+}
 .stye {
   text-decoration: none;
   cursor: pointer;

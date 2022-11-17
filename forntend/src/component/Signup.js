@@ -74,13 +74,13 @@ const Signup = () => {
   return (
     <>
       <div className="container">
-        <div className="row mx-auto mt-4">
-          <div className="shadow col-12 col-md-8 mx-auto px-4 pb-3 asd">
-            <h2 className="m-4">
+        <div className="row mx-auto m-4">
+          <div className="shadow col-12 col-md-4 mx-auto px-4 pb-3 asd">
+            <h3 className="m-4">
               <b>
                 <i>Create an account</i>
               </b>
-            </h2>
+            </h3>
             <p>
               <b className="text-danger">{Error}</b>
             </p>
@@ -204,7 +204,7 @@ const Signup = () => {
                 <label>&#x1F512;&nbsp; Your password</label>
                 <button
                   type="submit"
-                  className="btn btn-info form-control py-3 mt-3 asd"
+                  className="btn form-control py-3 mt-3 asd"
                 >
                   Sign-Up
                 </button>
