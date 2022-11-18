@@ -62,7 +62,7 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarText">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-                        <div className="col-12 col-md-8 text-end">
+                        <div className="col-12 col-md-8 text-md-end">
                             <Link
                                 to="/Dashboard"
                                 className='text-black stye'
@@ -88,7 +88,7 @@ const Navbar = () => {
                                 </span>
                             </Link>
                             <span>
-                                <i className="fa fs-5 fa-sign-out mx-md-4 mx-3 stye" onClick={logout}>Log-out</i>
+                                <i className="fa fs-5 fa-sign-out mx-md-4 mx-3 my-3 my-md-0 stye" onClick={logout}>Log-out</i>
                             </span>
                         </div>
                     </div>

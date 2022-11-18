@@ -18,6 +18,9 @@ code {
   border-radius: 10px;
   border: none;
 }
+.noe{
+  border: none;
+}
 .stye {
   text-decoration: none;
   cursor: pointer;
@@ -27,6 +30,12 @@ code {
 }
 .clo {
   color: darkblue;
+}
+.we{
+  min-height: 74vh;
+}
+.px{
+  padding-left:1px;
 }
 .gose {
   float: right;
