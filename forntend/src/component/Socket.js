@@ -8,34 +8,29 @@ import Navbar from "./Navbar";
 import { baseUrl, socket } from "./endpoint";
 
 const Socket = () => {
-    useEffect(() => {
-        const firstname = "debo"
-        socket.emit("send-user", firstname);
-        socket.on("send-user", (res) => {
-            console.log(res);
-        })
-    }, [])
+    const [display, setdisplay] = useState("")
     const formik = useFormik({
         initialValues: {
             message: "",
         },
         onSubmit: (values) => {
-            console.log(values);
-            socket.emit("send-user", values);
-            socket.on("send-user", (res) => {
-                console.log(res);
-            })
+            console.log(values.message);
+            setdisplay(values.message)
+            socket.emit("message", values.message);
+            // socket.on("user-sent", (res) => {
+            //     console.log(res);
+            // })
         },
         validationSchema: yup.object({
             message: yup.string().required("This field is required"),
         }),
     });
-
+    console.log(display);
     return (
         <>
             <Navbar />
-            <div className="we"></div>
-            <div className="container">
+            <div className="we">{display}</div>
+            <div className="container fixed-bottom">
                 <div className="col-12 col-md-12 mx-auto px-4 pb-3 asd">
                     <form action="" onSubmit={formik.handleSubmit}>
                         <div className="form-floating mt-4">

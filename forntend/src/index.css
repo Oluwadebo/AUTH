@@ -18,7 +18,7 @@ code {
   border-radius: 10px;
   border: none;
 }
-.noe{
+.noe {
   border: none;
 }
 .stye {
@@ -31,11 +31,11 @@ code {
 .clo {
   color: darkblue;
 }
-.we{
+/* .we {
   min-height: 74vh;
-}
-.px{
-  padding-left:1px;
+} */
+.px {
+  padding-left: 1px;
 }
 .gose {
   float: right;
