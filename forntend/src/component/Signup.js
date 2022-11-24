@@ -85,6 +85,11 @@ const Signup = () => {
               <b className="text-danger">{Error}</b>
             </p>
             <form action="" onSubmit={formik.handleSubmit}>
+              <input type="text" placeholder="Your firstname" className={
+                formik.errors.firstname && formik.touched.firstname
+                  ? "form-control is-invalid"
+                  : "form-control asde"
+              } />
               <div className="form-floating">
                 <input
                   type="text"

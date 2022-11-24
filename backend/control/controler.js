@@ -3,14 +3,17 @@ const { UserModel, SignupModel } = require('../model/model');
 const cloudinary = require('cloudinary');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { sendmail } = require('../mailer');
 require('dotenv').config()
 
 const regist = (req, res) => {
     const information = req.body;
+    let useremail = req.body.email;
     SignupModel.create(information, (err) => {
         if (err) {
             res.send({ message: "Email already used", status: false })
         } else {
+            sendmail(useremail)
             res.send({ message: "saved", status: true })
         }
     })

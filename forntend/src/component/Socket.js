@@ -42,7 +42,7 @@ const Socket = () => {
     });
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div>{rec.map((item, index) => (
                 <h4> {item.message} </h4>
             ))}</div>

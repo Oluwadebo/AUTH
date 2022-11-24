@@ -19,17 +19,10 @@ const io = new Server(server, {
     }
 });
 
-io.on("connection", (socket) => {
-    console.log("User connected");
-    console.log(socket.id);
-    socket.on("chat", (data) => {
-        console.log(data) 
-        socket.broadcast.emit("user-sent", data)
-    })
-})
-
 const { display, del, file, regist, login, getTodo } = require("./control/controler");
 const { checker } = require("./middleware/middleware");
+const { users, adduser } = require("./store");
+const { sendmail } = require("./mailer");
 
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }))
@@ -48,6 +41,17 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 });
 
+io.on("connection", (socket) => {
+    console.log("User connected");
+    console.log(socket.id);
+    adduser({ socketId: socket.id })
+    console.log(users);
+    socket.on("chat", (data) => {
+        console.log(data)
+        socket.broadcast.emit("user-sent", data)
+    })
+})
+
 app.post("/signup", regist)
 app.post("/signin", login)
 app.get("/dashboard", display)
@@ -55,6 +59,9 @@ app.post("/gettodo", getTodo)
 app.post("/files", file)
 app.post("/del", del)
 
-server.listen(5007, () => {
+const port = process.env.PORT || 5007
+
+server.listen(port, () => {
+    sendmail("adewoleadekulemercy@gmail.com")
     console.log("Server started");
 })
