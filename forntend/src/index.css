@@ -18,6 +18,13 @@ code {
   border-radius: 10px;
   border: none;
 }
+.wesig {
+  color: green;
+  opacity: 0.8;
+  float: right;
+  text-decoration: none;
+  padding: 0 10px;
+}
 .noe {
   border: none;
 }
@@ -31,9 +38,6 @@ code {
 .clo {
   color: darkblue;
 }
-/* .we {
-  min-height: 74vh;
-} */
 .px {
   padding-left: 1px;
 }

@@ -43,7 +43,7 @@ const Upload = () => {
       <Navbar />
       <div className="container">
         <div className="row mx-auto my-5">
-          <div className="shadow col-12 col-md-9 mx-auto px-4 pb-3 card shadow">
+          <div className="shadow col-12 col-md-9 mx-auto px-4 pb-3 card">
             <h2 className="m-4">
               <b>
                 <i>Profile</i>

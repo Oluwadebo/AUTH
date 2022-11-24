@@ -14,7 +14,7 @@ const NotFound = () => {
               borderRadius: "5px",
             }}
           >
-            <h1>404!!!</h1>
+            <h1>404! 404!! 404!!!</h1>
             <h2>Page Not Found!!!</h2>
             <h2>
               The specified file was not found on this website. Please check the

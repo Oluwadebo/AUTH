@@ -80,11 +80,11 @@ const Navbar = () => {
                                 </span>
                             </Link>
                             <Link
-                                to="/Socket"
+                                to="/message"
                                 className='text-black stye'
                             >
                                 <span>
-                                    <i className="fa fs-5 fa-envelope mx-md-4 mx-3"> Socket </i>
+                                    <i className="fa fs-5 fa-envelope mx-md-4 mx-3"> Meessage </i>
                                 </span>
                             </Link>
                             <span>

@@ -14,4 +14,8 @@ const checker = (req, res, next) => {
     })
 }
 
-module.exports = { checker };
+let users = [];
+
+let addusers =
+
+    module.exports = { checker };

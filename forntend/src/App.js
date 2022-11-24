@@ -15,7 +15,7 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Upload" element={<Upload />} />
-        <Route path="/Socket" element={<Socket />} />
+        <Route path="/message" element={<Socket />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

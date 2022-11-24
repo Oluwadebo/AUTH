@@ -1,35 +1,54 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Navbar from "./Navbar";
-import { baseUrl, socket } from "./endpoint";
+import { socket } from "./endpoint";
 
 const Socket = () => {
-    const [display, setdisplay] = useState("")
+    const [display, setdisplay] = useState([])
+    const [rec, setrec] = useState([])
+    // useEffect(() => {
+    //     if (localStorage.message) {
+    //         let detail = JSON.parse(localStorage.message);
+    //         setdisplay(detail);
+
+    //     } else {
+    //         setdisplay([]);
+    //     }
+    // }, [])
+    useEffect(() => {
+        socket.on("user-sent", (res) => {
+            if (res) {
+                const recieve = [...rec, res];
+                setrec(recieve);
+            }
+        })
+    }, [])
     const formik = useFormik({
         initialValues: {
             message: "",
         },
         onSubmit: (values) => {
-            console.log(values.message);
-            setdisplay(values.message)
-            socket.emit("message", values.message);
-            // socket.on("user-sent", (res) => {
-            //     console.log(res);
-            // })
+            console.log(values);
+            socket.emit("chat", values);
+            const newobj = [...display, values];
+            setdisplay(newobj);
+            // localStorage.setItem("message", JSON.stringify(newobj));
         },
         validationSchema: yup.object({
             message: yup.string().required("This field is required"),
         }),
     });
-    console.log(display);
     return (
         <>
             <Navbar />
-            <div className="we">{display}</div>
+            <div>{rec.map((item, index) => (
+                <h4> {item.message} </h4>
+            ))}</div>
+            <div className="wesig">{display.map((item, index) => (
+                <h4> {item.message} </h4>
+            ))}</div>
             <div className="container fixed-bottom">
                 <div className="col-12 col-md-12 mx-auto px-4 pb-3 asd">
                     <form action="" onSubmit={formik.handleSubmit}>
